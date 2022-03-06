@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.tmp
+coverage/
+logs/
+package-lock.json
+Db.sql
+Db.sql-shm
+Db.sql-wal
