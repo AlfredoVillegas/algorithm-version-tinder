@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../shared/DomainEvent';
+import { DomainEvent } from '../../shared/domain/DomainEvent';
 
 export class LikesMutualArchievedDomainEvent extends DomainEvent {
   static EVENT_NAME = 'likes.mutual.archieved';

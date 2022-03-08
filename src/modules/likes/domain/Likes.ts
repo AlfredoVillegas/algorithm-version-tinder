@@ -1,4 +1,4 @@
-import { Uuid } from '../../shared/Uuid';
+import { Uuid } from '../../shared/domain/Uuid';
 
 export class Likes {
   readonly id: Uuid;

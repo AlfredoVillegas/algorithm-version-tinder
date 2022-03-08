@@ -1,4 +1,4 @@
-import { EventBus } from '../../shared/EventBus';
+import { EventBus } from '../../shared/domain/EventBus';
 import { Likes } from '../domain/Likes';
 import { LikesRepository } from '../domain/LikesRepository';
 import { VerifyIfLikesIsMutual } from '../domain/VerifyIfLikeIsMutual';
