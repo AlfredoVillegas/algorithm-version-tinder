@@ -4,21 +4,19 @@ import { LikesRepository } from '../domain/LikesRepository';
 import { VerifyIfLikesIsMutual } from '../domain/VerifyIfLikeIsMutual';
 
 class RegisterLikeService {
-  private verifyIfLikeIsMutualService: VerifyIfLikesIsMutual;
+  private verifyIfLikeIsMutual: VerifyIfLikesIsMutual;
 
   constructor(private repository: LikesRepository, private eventBus: EventBus) {
-    this.verifyIfLikeIsMutualService = new VerifyIfLikesIsMutual(repository);
+    this.verifyIfLikeIsMutual = new VerifyIfLikesIsMutual(repository);
   }
 
   public async execute(fromUser: string, toUser: string): Promise<void> {
     const like = Likes.registerLike(fromUser, toUser);
-
-    const likesMutualEvent = await this.verifyIfLikeIsMutualService.execute(toUser, fromUser);
-
     await this.repository.save(like);
 
+    const likesMutualEvent = await this.verifyIfLikeIsMutual.execute(toUser, fromUser);
     if (likesMutualEvent) {
-      this.eventBus.publish([likesMutualEvent]);
+      await this.eventBus.publish([likesMutualEvent]);
     }
   }
 }
