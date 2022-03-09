@@ -7,3 +7,4 @@ package-lock.json
 Db.sql
 Db.sql-shm
 Db.sql-wal
+src/pru.ts
