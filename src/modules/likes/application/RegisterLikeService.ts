@@ -1,4 +1,5 @@
 import { EventBus } from '../../shared/domain/EventBus';
+import { Uuid } from '../../shared/domain/Uuid';
 import { Likes } from '../domain/Likes';
 import { LikesRepository } from '../domain/LikesRepository';
 import { VerifyIfLikesIsMutual } from '../domain/VerifyIfLikeIsMutual';
@@ -11,10 +12,13 @@ class RegisterLikeService {
   }
 
   public async execute(fromUser: string, toUser: string): Promise<void> {
-    const like = Likes.registerLike(fromUser, toUser);
+    const fromUserId = new Uuid(fromUser);
+    const toUserId = new Uuid(toUser);
+
+    const like = Likes.registerLike(fromUserId, toUserId);
     await this.repository.save(like);
 
-    const likesMutualEvent = await this.verifyIfLikeIsMutual.execute(toUser, fromUser);
+    const likesMutualEvent = await this.verifyIfLikeIsMutual.execute(toUserId, fromUserId);
     if (likesMutualEvent) {
       await this.eventBus.publish([likesMutualEvent]);
     }

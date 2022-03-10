@@ -6,15 +6,15 @@ export class Matches {
   readonly personTwo: Uuid;
   readonly createdAt: Date;
 
-  constructor(id: string, personOne: string, personTwo: string, createAt: Date) {
-    this.id = new Uuid(id);
-    this.personOne = new Uuid(personOne);
-    this.personTwo = new Uuid(personTwo);
+  constructor(id: Uuid, personOne: Uuid, personTwo: Uuid, createAt: Date) {
+    this.id = id;
+    this.personOne = personOne;
+    this.personTwo = personTwo;
     this.createdAt = createAt;
   }
-  static Create(personOne: string, personTwo: string): Matches {
+  static Create(personOne: Uuid, personTwo: Uuid): Matches {
     const createAt = new Date();
-    const id = Uuid.random().toString();
+    const id = Uuid.random();
 
     const matches = new Matches(id, personOne, personTwo, createAt);
 
