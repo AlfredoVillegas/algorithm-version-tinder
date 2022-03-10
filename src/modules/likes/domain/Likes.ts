@@ -4,13 +4,13 @@ export class Likes {
   readonly id: Uuid;
   readonly fromUser: Uuid;
   readonly toUser: Uuid;
-  readonly date: Date;
+  readonly createdAt: Date;
 
   constructor(id: Uuid, fromUser: Uuid, toUser: Uuid, date: Date) {
     this.id = id;
     this.fromUser = fromUser;
     this.toUser = toUser;
-    this.date = date;
+    this.createdAt = date;
   }
 
   static registerLike(fromUser: Uuid, toUser: Uuid): Likes {

@@ -6,8 +6,8 @@ export class VerifyIfLikesIsMutual {
   constructor(private repository: LikesRepository) {}
 
   public async execute(fromUser: Uuid, whitUser: Uuid): Promise<LikesMutualArchievedDomainEvent | null> {
-    const likes = await this.repository.findLikeBetween(fromUser, whitUser);
-    if (!likes) {
+    const like = await this.repository.findLikeBetween(fromUser, whitUser);
+    if (!like) {
       return null;
     }
     return new LikesMutualArchievedDomainEvent([fromUser.toString(), whitUser.toString()]);
