@@ -7,6 +7,8 @@ export interface UserRepository {
 
   findById(id: UserId): Promise<User | null>;
 
+  searchAll(): Promise<User[] | null | undefined>;
+
   delete(id: UserId): Promise<void>;
 
   userEmailAlreadyExist(email: UserEmail): Promise<boolean>;

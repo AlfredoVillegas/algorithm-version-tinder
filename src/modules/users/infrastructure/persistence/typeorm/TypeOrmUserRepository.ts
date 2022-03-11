@@ -13,6 +13,11 @@ export class TypeOrmUserRepository implements UserRepository {
     await this.manager.save(UserSchema, user);
   }
 
+  async searchAll(): Promise<User[] | null | undefined> {
+    const users = await this.manager.find(UserSchema);
+    return users;
+  }
+
   async findById(id: UserId): Promise<User | null> {
     const userInDb = await this.manager.findOne(UserSchema, { id: id });
     if (!userInDb) {
