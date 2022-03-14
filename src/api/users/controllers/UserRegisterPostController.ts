@@ -10,9 +10,8 @@ export class UserRegisterPostController {
       await this.userRegister.run({ id, name, email, password });
       res.status(201).json({ data: { id, name, email } });
     } catch (err: any) {
-      res.status(400).json({
-        errorMessage: err.message
-      });
+      res.status(500).json({ errorMessage: err.message });
     }
   }
 }
+new Error();

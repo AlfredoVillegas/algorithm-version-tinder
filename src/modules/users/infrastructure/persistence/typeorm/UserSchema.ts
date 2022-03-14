@@ -1,20 +1,22 @@
 import { EntitySchema } from 'typeorm';
-import { UuidTransformerOrm } from '../../../../shared/infrastructure/percistence/typeorm/UuidTransformerOrm';
 import { User } from '../../../domain/User';
 import { UserEmail } from '../../../domain/UserEmail';
+import { UserId } from '../../../domain/UserId';
 import { UserName } from '../../../domain/UserName';
 import { UserPassword } from '../../../domain/UserPassword';
 
 export const UserSchema = new EntitySchema<User>({
-  name: 'Users',
+  name: 'User',
   tableName: 'users',
   target: User,
-
   columns: {
     id: {
       type: String,
       primary: true,
-      transformer: UuidTransformerOrm
+      transformer: {
+        from: (value: string): UserId => new UserId(value),
+        to: (value: UserId): string => value.value
+      }
     },
     name: {
       type: String,
@@ -39,3 +41,4 @@ export const UserSchema = new EntitySchema<User>({
     }
   }
 });
+// **/

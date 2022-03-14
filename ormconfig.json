@@ -3,5 +3,4 @@
     "database": "./Db.sql",
     "entities" : ["**/src/modules/**/infrastructure/persistence/typeorm/*{.js,.ts}"],
     "synchronize" : true
-    
 }
