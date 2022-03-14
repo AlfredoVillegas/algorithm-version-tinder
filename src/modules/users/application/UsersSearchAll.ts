@@ -10,12 +10,12 @@ export class UserSearchAll {
   }
 
   async run(): Promise<User[]> {
-    const user = await this.repository.searchAll();
+    let users = await this.repository.searchAll();
 
-    if (!user) {
-      throw new UserNotExist('Not exists user');
+    if (!users) {
+      throw new UserNotExist('Not exists users');
     }
 
-    return user;
+    return users;
   }
 }

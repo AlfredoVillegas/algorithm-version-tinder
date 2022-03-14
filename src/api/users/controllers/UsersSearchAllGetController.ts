@@ -1,0 +1,18 @@
+import { Request, Response } from 'express';
+import { UserSearchAll } from '../../../modules/users/application/UsersSearchAll';
+
+export class UsersSearchAllGetController {
+  constructor(private searchAll: UserSearchAll) {}
+
+  async run(req: Request, res: Response): Promise<void> {
+    try {
+      const users = await this.searchAll.run();
+      const userResponse = users.map(user => {
+        return { id: user.id, name: user.name, email: user.email };
+      });
+      res.status(200).json({ data: userResponse });
+    } catch (err: any) {
+      res.status(404).json({ errorMessage: err.message });
+    }
+  }
+}

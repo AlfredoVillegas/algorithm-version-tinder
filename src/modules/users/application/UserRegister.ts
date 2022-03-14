@@ -41,7 +41,7 @@ export class UserRegister {
 
     await this.repository.save(user);
 
-    const userRegisterDomainEvent = new UserRegisterDomainEvent(user.id.value, user.email.value, user.name.value);
-    await this.eventBus.publish([userRegisterDomainEvent]);
+    const userRegisteredDomainEvent = new UserRegisterDomainEvent(user.id.value, user.email.value, user.name.value);
+    await this.eventBus.publish([userRegisteredDomainEvent]);
   }
 }
