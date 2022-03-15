@@ -3,6 +3,7 @@ import express, { Application } from 'express';
 import { EventBus } from '../modules/shared/domain/EventBus';
 import { initRouterAuth } from './auth/init';
 import { initRouterLikes } from './likes/init';
+import { initSubscribersEventsMatches } from './matches/EventSubscribe';
 import { initRouterMatches } from './matches/init';
 import { initRouterUsers } from './users/init';
 
@@ -18,6 +19,7 @@ export class Server {
     this.eventBus = eventBus;
     this.middlewares();
     this.initRoutes();
+    this.initSubscribers();
   }
   middlewares() {
     this.app.use(cors());
@@ -29,6 +31,10 @@ export class Server {
     initRouterUsers(this.app, this.eventBus);
     initRouterLikes(this.app, this.eventBus);
     initRouterMatches(this.app);
+  }
+
+  initSubscribers() {
+    initSubscribersEventsMatches(this.eventBus);
   }
 
   async listen() {

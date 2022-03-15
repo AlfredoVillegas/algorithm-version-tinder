@@ -1,6 +1,6 @@
-import { Uuid } from '../../shared/domain/Uuid';
-import { Matches } from '../domain/Matches';
-import { MatchesRepository } from '../domain/MatchesRepository';
+import { Uuid } from '../../../shared/domain/Uuid';
+import { Matches } from '../../domain/Matches';
+import { MatchesRepository } from '../../domain/MatchesRepository';
 
 export class MatchesCreatorService {
   constructor(private repository: MatchesRepository) {}
