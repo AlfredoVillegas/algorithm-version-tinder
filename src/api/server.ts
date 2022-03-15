@@ -3,6 +3,7 @@ import express, { Application } from 'express';
 import { EventBus } from '../modules/shared/domain/EventBus';
 import { initRouterAuth } from './auth/init';
 import { initRouterLikes } from './likes/init';
+import { initRouterMatches } from './matches/init';
 import { initRouterUsers } from './users/init';
 
 export class Server {
@@ -25,10 +26,9 @@ export class Server {
 
   initRoutes() {
     initRouterAuth(this.app);
-
     initRouterUsers(this.app, this.eventBus);
-
     initRouterLikes(this.app, this.eventBus);
+    initRouterMatches(this.app);
   }
 
   async listen() {
