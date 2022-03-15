@@ -8,7 +8,7 @@ export class UsersSearchAllGetController {
     try {
       const users = await this.searchAll.run();
       const userResponse = users.map(user => {
-        return { id: user.id, name: user.name, email: user.email };
+        return { id: user.id.value, name: user.name.value, email: user.email.value };
       });
       res.status(200).json({ data: userResponse });
     } catch (err: any) {

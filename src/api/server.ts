@@ -2,6 +2,7 @@ import cors from 'cors';
 import express, { Application } from 'express';
 import { EventBus } from '../modules/shared/domain/EventBus';
 import { initRouterAuth } from './auth/init';
+import { initRouterLikes } from './likes/init';
 import { initRouterUsers } from './users/init';
 
 export class Server {
@@ -26,6 +27,8 @@ export class Server {
     initRouterAuth(this.app);
 
     initRouterUsers(this.app, this.eventBus);
+
+    initRouterLikes(this.app, this.eventBus);
   }
 
   async listen() {
